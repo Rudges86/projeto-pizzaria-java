@@ -6,6 +6,7 @@ import com.example.pizzaria.demo.exception.UsernameUniqueViolationException;
 import com.example.pizzaria.demo.repository.CategoriaRepository;
 import com.example.pizzaria.demo.web.dto.categoriaDto.CategoriaDto;
 import com.example.pizzaria.demo.web.dto.categoriaDto.EditeCategoriaDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,7 @@ public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
 
     @Transactional
-    public Categoria salvarCategoria(Categoria categoria) {
-           //Categoria categoria = buscarCategoria(name);
+    public Categoria salvarCategoria(@Valid Categoria categoria) {
         try{
             return categoriaRepository.save(categoria);
         } catch (DataIntegrityViolationException ex) {

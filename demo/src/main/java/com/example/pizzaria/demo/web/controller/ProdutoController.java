@@ -33,8 +33,8 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ProdutoMapper.toResponseDto(produto));
     }
 
-    @GetMapping("/buscarProdutosPorCategoria")
-    public ResponseEntity<List<ProdutoResponseDto>> buscarProdutosPorCategoria(@RequestParam String name){
+    @GetMapping("/buscarProdutosPorCategoria/{name}")
+    public ResponseEntity<List<ProdutoResponseDto>> buscarProdutosPorCategoria(@PathVariable String name){
         List<Produto> produtos = produtoService.buscarProdutoPorCategoria(name);
         return ResponseEntity.status(HttpStatus.OK).body(ProdutoMapper.toListDto(produtos));
     }

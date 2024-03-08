@@ -46,8 +46,7 @@ public class ProdutoService {
 
     @Transactional(readOnly = true)
     public List<Produto> buscarProdutoPorCategoria(String name) {
-        Categoria categoria = categoriaService.buscarCategoriaPorNome(name);
-        List<Produto> produto = produtoRepository.findByCategoria(categoria);
+        List<Produto> produto = produtoRepository.findByCategoriaName(name);
         return produto;
     }
 }
