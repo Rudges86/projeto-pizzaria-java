@@ -30,7 +30,7 @@ public class Order implements Serializable {
     @Column(name = "`table`", nullable = false)
     private Long table;
     @Column(name = "draft", nullable = false)
-    private boolean draft = false;
+    private boolean draft = true;
     @Column(name="nome", length = 25)
     private String name;
     @Enumerated(EnumType.STRING)
@@ -53,8 +53,7 @@ public class Order implements Serializable {
     private String modificadoPor;
     public enum Status {
         EM_PRODUCAO,
-        PRONTO,
-        ENVIADO,
+        FINALIZADO,
         AGUARDANDO
     }
 
@@ -70,4 +69,6 @@ public class Order implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    
 }

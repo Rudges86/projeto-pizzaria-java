@@ -31,7 +31,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('CLIENTE')")
     public ResponseEntity<List<CategoriaResponseDto>> buscarTodasCategorias(){
         List<Categoria> categorias = categoriaService.buscarTodasAsCategoria();
         return ResponseEntity.status(HttpStatus.OK).body(CategoriaMapper.toListDto(categorias));
@@ -46,7 +46,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/categoriaName")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('CLIENTE')")
     public ResponseEntity<CategoriaResponseDto> buscar(@RequestParam String name) {
             Categoria categoria = categoriaService.buscarCategoriaPorNome(name);
         return ResponseEntity.ok().body(CategoriaMapper.toDto(categoria));

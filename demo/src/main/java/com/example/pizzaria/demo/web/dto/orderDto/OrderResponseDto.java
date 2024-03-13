@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class OrderResponseDto {
+    private Long id;
     private String table;
     private String name;
     private String draft;

@@ -1,10 +1,9 @@
 package com.example.pizzaria.demo.web.exception;
 
-import com.example.pizzaria.demo.exception.EntityNotFoundException;
-import com.example.pizzaria.demo.exception.FailSaveFileException;
-import com.example.pizzaria.demo.exception.InvalidCredencialException;
-import com.example.pizzaria.demo.exception.UsernameUniqueViolationException;
+import com.example.pizzaria.demo.entity.Produto;
+import com.example.pizzaria.demo.exception.*;
 
+import com.example.pizzaria.demo.service.ItemService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +26,21 @@ import javax.print.attribute.standard.Media;
 @Slf4j
 public class ApiExceptinHandler {
     private final MessageSource messageSource;
+
+
+    @ExceptionHandler(InvalidSaveItem.class)
+    public ResponseEntity<ErrorMessage> itemViolation(InvalidSaveItem ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, String.format(ex.getMessage())));
+    }
+
+    @ExceptionHandler(ProdutosNotCategoriaFoundException.class)
+    public ResponseEntity<ErrorMessage> produtoNotCategoriaFoundException(ProdutosNotCategoriaFoundException ex, HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, String.format(ex.getMessage())));
+    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorMessage> entityNotFoundException(EntityNotFoundException ex, HttpServletRequest request) {

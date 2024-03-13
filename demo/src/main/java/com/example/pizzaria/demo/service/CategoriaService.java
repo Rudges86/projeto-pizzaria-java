@@ -37,7 +37,7 @@ public class CategoriaService {
     @Transactional(readOnly = true)
     public Categoria buscarCategoriaPorNome(String nome) {
         Categoria categoria = categoriaRepository.findByName(nome)
-                .orElseThrow(() -> new EntityNotFoundException(nome));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Categoria: %s", nome)));
         return categoria;
     }
     @Transactional
