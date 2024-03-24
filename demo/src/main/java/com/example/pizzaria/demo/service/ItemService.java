@@ -37,4 +37,8 @@ public class ItemService {
     }
 
 
+    @Transactional
+    public void deletarItem(Long id){
+        itemRepository.deleteById(id);
+    }
 }

@@ -1,8 +1,11 @@
 package com.example.pizzaria.demo.service;
 
+import com.example.pizzaria.demo.entity.Item;
 import com.example.pizzaria.demo.entity.Order;
 import com.example.pizzaria.demo.exception.EntityNotFoundException;
+import com.example.pizzaria.demo.repository.ItemRepository;
 import com.example.pizzaria.demo.repository.OrderRepository;
+import com.example.pizzaria.demo.repository.ProdutoRepository;
 import com.example.pizzaria.demo.web.dto.orderDto.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,11 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final ItemRepository itemRepository;
+    private final ProdutoRepository produtoRepository;
 
     @Transactional
     public Order salvar(Order toOrder) {
@@ -69,6 +75,24 @@ public class OrderService {
             order.setStatus(Order.Status.FINALIZADO);
         }
 
+    }
+
+    @Transactional(readOnly = true)
+    public List<Order> listarOrder(){
+        return orderRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Item detalharOrder(Long id) {
+       Optional<Order> order = orderRepository.findById(id);
+       Item item = itemRepository.findByOrder(order.get());
+
+       return item;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Item> detalharAllOrders() {
+        return itemRepository.findAll();
     }
 
 }
