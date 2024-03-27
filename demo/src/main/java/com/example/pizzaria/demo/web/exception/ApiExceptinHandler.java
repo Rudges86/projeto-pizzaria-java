@@ -69,8 +69,8 @@ public class ApiExceptinHandler {
     public ResponseEntity<ErrorMessage> invalidCredencialException(InvalidCredencialException ex, HttpServletRequest request){
         Object [] params = new Object[]{ex.getMessage()};
         String message = messageSource.getMessage("exception.invalidCredencialException", params, request.getLocale());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).contentType(MediaType.APPLICATION_JSON)
-                .body(new ErrorMessage(request, HttpStatus.UNAUTHORIZED, message));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
+                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, message));
     }
 
     @ExceptionHandler(UsernameUniqueViolationException.class)

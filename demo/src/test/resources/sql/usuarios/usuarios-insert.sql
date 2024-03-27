@@ -1,0 +1,5 @@
+insert into Usuarios (id, nome, email, password, role) values (1,'Rudge', 'rudges86@gmail.com','$2a$12$VQSVztr/M8tcwzcy9jJgFebpqybKpF4FVwM3zilhOAI4yL1iW3rJa' , 'ROLE_ADMIN');
+insert into Usuarios (id, nome, email, password, role) values (2,'Valdinete', 'valdinete@gmail.com','$2a$12$VQSVztr/M8tcwzcy9jJgFebpqybKpF4FVwM3zilhOAI4yL1iW3rJa' , 'ROLE_CLIENTE');
+insert into Usuarios (id, nome, email, password, role) values (3,'Juçânia', 'jucania@gmail.com','$2a$12$VQSVztr/M8tcwzcy9jJgFebpqybKpF4FVwM3zilhOAI4yL1iW3rJa' , 'ROLE_CLIENTE');
+insert into Usuarios (id, nome, email, password, role) values (4,'Barbára', 'babi@gmail.com','$2a$12$VQSVztr/M8tcwzcy9jJgFebpqybKpF4FVwM3zilhOAI4yL1iW3rJa' , 'ROLE_CLIENTE');
+insert into Usuarios (id, nome, email, password, role) values (5,'Raul', 'raul@gmail.com','$2a$12$VQSVztr/M8tcwzcy9jJgFebpqybKpF4FVwM3zilhOAI4yL1iW3rJa' , 'ROLE_CLIENTE');
